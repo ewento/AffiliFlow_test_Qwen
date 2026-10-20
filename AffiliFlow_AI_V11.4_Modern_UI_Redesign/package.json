@@ -1,0 +1,11 @@
+{
+  "name": "affiliflow-ai-v11",
+  "version": "11.0.0",
+  "description": "AffiliFlow AI V11 \u2014 independent tabs, product context, six video ideas with two 8-second clips each",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "test": "node dev-tests/validator-test.js",
+    "test:e2e": "node dev-tests/e2e.js"
+  }
+}

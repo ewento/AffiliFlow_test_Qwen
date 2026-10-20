@@ -1,0 +1,21 @@
+AffiliFlow AI V11 — BUILD STATUS
+
+Included in this build:
+- Product nickname field and Product Description field, passed to AI prompt context.
+- Independent generation for Story, Problem-to-CTA and Video tabs.
+- Tab 3 video generation requests six ideas, each with Clip A and Clip B (8 seconds each), targeting 12 prompts total.
+- Mobile header CSS fixes from prior candidate build retained.
+- Netlify function structure retained; server.js supports local StackBlitz/Node testing.
+
+Checks performed:
+- node --check app.js: PASS
+- node --check netlify/functions/ai.js: PASS
+- node --check netlify/functions/prompts.js: PASS
+- npm test / validator-test.js: PASS
+
+Not yet verified:
+- Live Gemini generation for six videos.
+- Actual browser rendering on StackBlitz mobile viewport.
+- Netlify Deploy Preview / production deployment.
+
+Production was not modified.

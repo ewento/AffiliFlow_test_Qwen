@@ -1,0 +1,15 @@
+AffiliFlow AI V11.3 — Tab 3 auto concept + API endpoint resilience
+
+Changes:
+- Tab 3 concept/slash recommendation is requested automatically when the user opens Tab 3, if a product image is present and no recommendation exists yet.
+- Users do not need to click a separate recommendation button before generating. The main Generate action will fetch a recommendation if needed, then generate six video ideas / twelve 8-second clips.
+- The optional secondary button is now labelled “Cadangkan semula konsep & /”.
+- Empty-state text explains recommendations will be prepared on opening Tab 3.
+- API client tries the Netlify function route first and then the local/StackBlitz server alias `/api/ai` when it receives an HTML 200 response.
+- Improved non-JSON error guidance for static preview / missing Node server scenarios.
+- Production deployment was not changed.
+
+Validation:
+- `node --check app.js`: passed
+- `npm test`: passed
+- Live Gemini generation not verified in this environment; StackBlitz must run `npm start` and have GEMINI_API_KEY configured.

@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="google-adsense-account" content="ca-pub-7327755985305925">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AffiliFlow AI membantu pencipta affiliate merancang idea kandungan, copywriting dan konsep video. Semak serta sesuaikan setiap hasil sebelum diterbitkan.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AffiliFlow AI">
+<meta property="og:title" content="AffiliFlow AI — Smart Affiliate Video Studio">
+<meta property="og:description" content="Cipta idea, copywriting dan prompt video affiliate dengan bantuan AI.">
+<meta property="og:url" content="https://affiliateai.netlify.app/">
+<meta property="og:image" content="https://affiliateai.netlify.app/affiliflow-social-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AffiliFlow AI — Premium AI Workspace">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AffiliFlow AI — Smart Affiliate Video Studio">
+<meta name="twitter:description" content="Cipta idea, copywriting dan prompt video affiliate dengan bantuan AI.">
+<meta name="twitter:image" content="https://affiliateai.netlify.app/affiliflow-social-preview.png">
+<title>AffiliFlow AI — Smart Affiliate Video Studio</title>
+<style>
+:root{
+  --bg:#0d0b0a; --panel:#191310; --panel2:#211914; --line:#3b2c23;
+  --text:#f7f1eb; --muted:#b9aaa0; --accent:#ff674f; --accent2:#ff8a70;
+}
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at top,#241812 0,#0d0b0a 45%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.app{max-width:1050px;margin:auto;padding:24px}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px;min-width:0}.brand{min-width:0;flex:1}.brand>div:last-child{min-width:0}.title{overflow-wrap:anywhere}
+.brand{display:flex;gap:12px;align-items:center}.bag{font-size:30px}.title{font-size:25px;font-weight:800}.sub{color:var(--muted);font-size:13px;margin-top:3px}.titleSupportLine{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:7px}.titleSupportLine .supportBtn{margin:0;padding:7px 12px;font-size:12px}.titleSupportLine span{color:#667085;font-size:11px;font-weight:650}
+button{border:0;border-radius:13px;padding:12px 16px;font-weight:750;cursor:pointer;color:#fff}
+.ghost{background:#251b17;border:1px solid var(--line)} .primary{background:linear-gradient(135deg,var(--accent),#ff765a);box-shadow:0 8px 25px #ff674f22}
+.grid{display:grid;grid-template-columns:390px 1fr;gap:18px}.card{background:linear-gradient(180deg,#1d1612,#15110f);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 12px 40px #0005}
+h2{font-size:16px;margin:0 0 14px} label{display:block;font-size:12px;font-weight:700;color:#d9cbc1;margin:12px 0 6px}
+input,textarea,select{width:100%;background:#100d0b;color:var(--text);border:1px solid #47352b;border-radius:12px;padding:12px;font:inherit;outline:none}
+input:focus,textarea:focus,select:focus{border-color:var(--accent)} textarea{min-height:100px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.actions{display:flex;gap:10px;margin-top:16px}.actions button{flex:1}
+.results{display:flex;flex-direction:column;gap:12px}.result{background:#15100e;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.rh{display:flex;justify-content:space-between;align-items:center;padding:13px 15px;border-bottom:1px solid var(--line);font-weight:800}.rh span{font-size:12px;color:var(--muted);font-weight:600}
+.rb{padding:14px;white-space:pre-wrap;line-height:1.55;color:#eee5df;font-size:14px}.copy{padding:7px 10px;font-size:11px;background:#2b211c;border:1px solid #49362c}
+.hooks{display:grid;gap:8px}.hook{padding:10px 12px;background:#211813;border-radius:10px;border:1px solid #34261f}
+.badges{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0 0}.badge{font-size:11px;padding:6px 9px;border-radius:999px;background:#281d18;color:#d9c6bb;border:1px solid #3d2c24}
+.empty{color:var(--muted);padding:35px;text-align:center;border:1px dashed #44332a;border-radius:16px}
+.small{font-size:11px;color:var(--muted);line-height:1.5;margin-top:10px}
+@media(max-width:820px){.grid{grid-template-columns:1fr}.app{padding:14px}.title{font-size:21px}}
+
+.uploadBox{margin-top:12px;padding:12px;background:#15100e;border:1px dashed #594239;border-radius:13px}
+.uploadBox input[type=file]{padding:9px;font-size:12px}
+.preview{margin-top:9px;display:none}
+.preview img{max-width:180px;max-height:180px;border-radius:12px;border:1px solid #4b382e;object-fit:contain;background:#0d0b0a}
+
+.gallery{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
+.gallery img{width:86px;height:86px;object-fit:cover;border-radius:10px;border:1px solid #4b382e}
+.settingsBox{margin-top:12px;padding:12px;background:#15100e;border:1px solid #3f3027;border-radius:13px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{display:inline-flex!important;align-items:center;gap:6px!important;background:#241a16;border:1px solid #3a2b24;border-radius:999px;padding:7px 9px!important;margin:0!important;font-size:11px!important}
+.chip input{width:auto}
+.tipCard{margin-top:14px;background:#191310;border:1px solid #3b2c23;border-radius:18px;padding:18px;text-align:center}
+.tipTitle{font-weight:800;font-size:15px}.tipText{color:#b9aaa0;font-size:12px;margin:6px 0 12px}
+.tipQr{width:190px;height:190px;object-fit:contain;background:white;border-radius:8px;padding:5px}
+
+/* ===== AffiliFlow AI V7.3 — Commercial Light Theme ===== */
+:root{
+  --bg:#f5f7fb;
+  --panel:#ffffff;
+  --panel2:#f8fafc;
+  --text:#172033;
+  --muted:#667085;
+  --border:#e4e7ec;
+  --accent:#ff6b4a;
+  --accent2:#7c5cff;
+  --accentSoft:#fff0eb;
+  --shadow:0 8px 28px rgba(16,24,40,.08);
+}
+body{
+  background:linear-gradient(180deg,#f8fafc 0%,#f3f6fb 100%) !important;
+  color:var(--text) !important;
+}
+.title{color:#172033 !important;font-weight:900}
+.subtitle{font-size:12px;color:#667085;margin-top:2px}
+.badge{background:linear-gradient(135deg,#ff6b4a,#ff8b6f) !important;color:#fff !important;border:0 !important}
+.card,.uploadBox,.settingsBox,.result,.tipCard,.flowHero{
+  background:#fff !important;
+  border-color:#e4e7ec !important;
+  box-shadow:var(--shadow);
+}
+label{color:#344054 !important}
+.small,.flowSub,.tipText{color:#667085 !important}
+input,textarea,select{
+  background:#fff !important;
+  color:#172033 !important;
+  border-color:#d0d5dd !important;
+}
+input::placeholder,textarea::placeholder{color:#98a2b3 !important}
+input:focus,textarea:focus,select:focus{
+  border-color:#ff6b4a !important;
+  box-shadow:0 0 0 3px rgba(255,107,74,.12) !important;
+}
+.primary{
+  background:linear-gradient(135deg,#ff6b4a,#ff855f) !important;
+  color:#fff !important;
+  border:0 !important;
+  box-shadow:0 8px 18px rgba(255,107,74,.22);
+}
+.ghost,.actions button:not(.primary){
+  background:#fff !important;
+  color:#344054 !important;
+  border:1px solid #d0d5dd !important;
+}
+.ghost:hover,.actions button:not(.primary):hover{background:#f8fafc !important}
+.rh{color:#172033 !important}
+.result .rh span{background:#f2efff !important;color:#6941c6 !important}
+.rb{color:#344054 !important}
+.flowHero{
+  background:linear-gradient(135deg,#fff4ef,#f5f2ff) !important;
+  border-color:#ffd5c9 !important;
+}
+.flowTitle{color:#172033 !important}
+.tipCard{
+  background:linear-gradient(180deg,#fff,#fff8f5) !important;
+}
+.tipTitle{color:#172033 !important}
+.uploadBox{
+  border-style:dashed !important;
+}
+.chip{
+  background:#f8fafc !important;
+  border-color:#e4e7ec !important;
+  color:#344054 !important;
+}
+.preview img,.gallery img{border-color:#e4e7ec !important}
+
+/* AffiliFlow AI V7.3 polished commercial header */
+.heroBrand{
+  max-width:1100px;
+  margin:18px auto 10px;
+  padding:26px 30px;
+  border:1px solid #e6e8ef;
+  border-radius:24px;
+  background:linear-gradient(135deg,#ffffff 0%,#fff7f3 52%,#f7f4ff 100%);
+  box-shadow:0 12px 36px rgba(16,24,40,.08);
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+.heroMark{
+  width:58px;height:58px;border-radius:17px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:20px;color:#fff;
+  background:linear-gradient(135deg,#ff6847,#7c5cff);
+  box-shadow:0 9px 20px rgba(124,92,255,.18);
+}
+.heroTitle{font-size:28px;line-height:1.1;font-weight:900;letter-spacing:-.6px;color:#172033}
+.heroSubtitle{margin-top:5px;font-size:14px;font-weight:700;color:#6941c6}
+.heroDesc{margin-top:5px;font-size:13px;color:#667085;line-height:1.45}
+.heroTools{
+  max-width:1100px;margin:0 auto 14px;
+  display:flex;flex-wrap:wrap;gap:8px;
+}
+.heroTools span{
+  background:#fff;border:1px solid #e4e7ec;color:#475467;
+  border-radius:999px;padding:7px 11px;font-size:11px;font-weight:700;
+}
+@media(max-width:760px){
+  .heroBrand{margin:10px 12px 9px;padding:18px 17px;border-radius:18px}
+  .heroMark{width:46px;height:46px;border-radius:14px;font-size:16px}
+  .heroTitle{font-size:22px}
+  .heroSubtitle{font-size:12px}
+  .heroDesc{font-size:11px}
+  .heroTools{margin:0 12px 12px}
+}
+
+.supportBtn{display:block;margin:24px auto 10px;padding:11px 16px;border-radius:999px;background:#fff;border:1px solid #e4e7ec;color:#475467;font-weight:750;cursor:pointer;box-shadow:0 5px 16px rgba(16,24,40,.06)}
+.modalOverlay{position:fixed;inset:0;background:rgba(16,24,40,.42);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:18px;z-index:9999}.modalOverlay.show{display:flex}
+.supportModal{position:relative;width:min(420px,100%);background:#fff;border-radius:24px;padding:26px;box-shadow:0 24px 70px rgba(16,24,40,.22);text-align:center}.modalClose{position:absolute;right:14px;top:10px;border:0;background:transparent;font-size:28px;color:#667085;cursor:pointer}.supportIcon{font-size:30px}.supportModal h2{margin:8px 0 6px;color:#172033}.supportModal p{color:#667085;font-size:13px;line-height:1.55;margin:0 auto 16px}.tipChoices{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}.tipChoices button{padding:10px 6px;border:1px solid #d0d5dd;border-radius:12px;background:#fff;color:#344054;font-weight:800;cursor:pointer}.tipChoices button.selected{background:#fff0eb;border-color:#ff6b4a;color:#d94f32}.supportNote{text-align:left;background:#f8fafc;border:1px solid #e4e7ec;border-radius:14px;padding:11px;font-size:12px;color:#667085;margin-bottom:12px}.supportNote b{display:block;color:#344054;margin-bottom:3px}.payBtn{width:100%;margin-bottom:9px}.payBtn:disabled{opacity:.45;cursor:not-allowed}.paymentConfig summary{cursor:pointer;font-weight:750}.paymentConfig input{margin-top:8px}.paymentConfig .ghost{margin-top:8px}
+
+/* AffiliFlow AI V7.3 — Optional QR Support */
+.qrWrap{
+  background:#fff;
+  border:1px solid #e4e7ec;
+  border-radius:18px;
+  padding:14px;
+  margin:16px auto 10px;
+  width:min(330px,90%);
+  box-shadow:0 8px 24px rgba(16,24,40,.08);
+}
+.supportQr{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:1/1;
+  object-fit:contain;
+}
+.qrHint{
+  color:#344054;
+  font-size:12px;
+  font-weight:750;
+  margin:10px 0 8px;
+}
+
+/* V6.4.1 readability + support placement */
+.hooks .hook{
+  background:#ffffff !important;
+  color:#172033 !important;
+  border:1px solid #e4e7ec !important;
+  box-shadow:0 4px 12px rgba(16,24,40,.05);
+}
+.hooks .hook *{color:#172033 !important}
+.hooks .hook b,.hooks .hook strong{color:#6941c6 !important}
+.hooks{gap:10px !important}
+.topSupport{
+  max-width:1100px;margin:0 auto 14px;
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.topSupport .supportBtn{margin:0 !important}
+.topSupport span{
+  color:#667085;font-size:11px;font-weight:650;
+}
+@media(max-width:760px){
+  .topSupport{margin:0 12px 12px}
+}
+
+.topSupport{
+  max-width:1100px;
+  margin:0 auto 8px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.topSupport .supportBtn{margin:0 !important}
+.topSupport span{
+  color:#667085;
+  font-size:11px;
+  font-weight:650;
+}
+@media(max-width:760px){
+  .topSupport{margin:0 12px 8px}
+}
+
+.qrWrap{background:#fff;border:1px solid #e4e7ec;border-radius:18px;padding:14px;margin:16px auto 10px;width:min(330px,90%);box-shadow:0 8px 24px rgba(16,24,40,.08)}
+.supportQr{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:contain}
+.qrHint{color:#344054;font-size:12px;font-weight:750;margin:10px 0 8px}
+.hooks .hook{background:#fff !important;color:#172033 !important;border:1px solid #e4e7ec !important;box-shadow:0 4px 12px rgba(16,24,40,.05)}
+.hooks .hook *{color:#172033 !important}
+.hooks .hook b{color:#6941c6 !important}
+
+
+.flowTip{
+  margin:10px 0 10px;
+  padding:12px 14px;
+  border:1px solid #dfe4ff;
+  border-radius:12px;
+  background:#f7f8ff;
+  color:#344054;
+  font-size:12px;
+  line-height:1.55;
+}
+.flowTip b{color:#6941c6}
+.flowTip span{display:block;margin-top:6px;color:#475467}
+/* ===== V6.4 Slash Prompt System ===== */
+/* Compact category-tab Slash Prompt Library */
+.slashCategoryTabs{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 12px;padding:7px;background:#f5f3ff;border:1px solid #e7defd;border-radius:12px}
+.slashCategoryTab{border:1px solid #ddd6fe;border-radius:9px;background:#fff;color:#6941c6;padding:8px 11px;font:inherit;font-size:11px;font-weight:800;cursor:pointer}
+.slashCategoryTab.active{background:#6941c6;color:#fff;border-color:#6941c6}
+.slashCategory{display:none}
+.slashCategory.active{display:block}
+.slashCategoryTitle{font-size:12px;font-weight:850;color:#344054;margin:0 0 8px}
+.slashCommandGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:7px}
+.slashCommandGrid button{min-width:0;overflow-wrap:anywhere}
+@media(max-width:600px){.slashCategoryTabs{gap:5px}.slashCategoryTab{padding:7px 8px;font-size:10px}.slashCommandGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.slashBox{
+  margin-top:12px;
+  padding:13px;
+  background:linear-gradient(135deg,#faf8ff,#fff8f5);
+  border:1px solid #e4e7ec;
+  border-radius:14px;
+}
+.slashTitle{
+  font-weight:850;
+  color:#172033;
+  font-size:13px;
+  margin-bottom:5px;
+}
+.slashDesc{
+  color:#667085;
+  font-size:11px;
+  line-height:1.5;
+  margin-bottom:9px;
+}
+.slashQuick{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin:8px 0 10px;
+}
+.slashQuick button{
+  padding:7px 9px;
+  border-radius:999px;
+  background:#fff;
+  color:#6941c6;
+  border:1px solid #d9d1f7;
+  font-size:10px;
+  font-weight:800;
+  cursor:pointer;
+}
+.slashQuick button:hover{background:#f5f2ff}
+#slashCommands{
+  min-height:78px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:12px;
+  line-height:1.55;
+  background:#fff !important;
+}
+.slashStack{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:8px;
+}
+.slashTag{
+  display:inline-flex;
+  padding:6px 9px;
+  border-radius:999px;
+  background:#f2efff;
+  color:#6941c6;
+  border:1px solid #ddd5ff;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:11px;
+  font-weight:800;
+}
+.slashPromptBlock{
+  background:#faf9ff;
+  border:1px solid #e3ddff;
+  border-radius:13px;
+  padding:12px;
+  margin-top:8px;
+}
+.slashPromptBlock .slashCode{
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  color:#6941c6;
+  font-weight:800;
+  line-height:1.6;
+  white-space:pre-wrap;
+}
+
+
+/* V6.4 Output Tabs */
+.outputTabs{display:flex;gap:8px;margin:14px 0 12px;padding:5px;background:#f3f5f8;border:1px solid #dfe4ea;border-radius:14px;position:sticky;top:10px;z-index:5}
+.outputTab{flex:1;border:0;border-radius:10px;padding:12px 14px;background:transparent;color:#536174;font:inherit;font-weight:800;cursor:pointer;transition:.18s}
+.outputTab:hover{background:#e9edf3}
+.outputTab.active{background:#fff;color:#17233b;box-shadow:0 2px 8px rgba(20,30,50,.10)}
+.outputPane{display:none}.outputPane.active{display:flex;flex-direction:column;gap:12px}
+.tabIntro{background:#f8fafc;border:1px solid #e3e8ef;border-radius:14px;padding:13px 15px;color:#46546a;line-height:1.5;font-size:13px}
+
+.storyPlatformTabs{display:flex;gap:7px;flex-wrap:wrap;padding:5px;background:#f5f3ff;border:1px solid #e7defd;border-radius:12px;margin-bottom:8px}
+.storyPlatformTab{border:1px solid #ddd6fe;border-radius:9px;background:#fff;color:#6d28d9;padding:9px 14px;font:inherit;font-weight:800;cursor:pointer;flex:1;min-width:95px}
+.storyPlatformTab.active{background:#6d28d9;color:#fff;border-color:#6d28d9;box-shadow:0 2px 7px rgba(109,40,217,.18)}
+.storyPlatformPane{padding:4px 2px 2px}
+.storyPlatformPane pre{overflow-wrap:anywhere}
+@media(max-width:520px){.storyPlatformTab{padding:8px 10px;font-size:13px}}
+@media(max-width:700px){.outputTabs{position:static}.outputTab{font-size:12px;padding:11px 8px}}
+
+.slashCategory{margin:10px 0 14px;padding:10px;border:1px solid var(--line,#333);border-radius:10px;background:rgba(255,255,255,.025)}
+.slashCategoryTitle{font-weight:800;font-size:13px;margin:0 0 8px;color:var(--accent,#ff4055)}
+.slashCommandGrid{display:flex;flex-wrap:wrap;gap:6px}
+.slashCommandGrid button{font-size:11px;padding:6px 8px;border-radius:7px;max-width:100%;overflow-wrap:anywhere}
+.slashCategory .slashCommandGrid button:hover{filter:brightness(1.15)}
+
+.videoClipTabs{margin-top:12px}.videoClipPane{display:none}.videoClipPane.active{display:block}.videoCard .rh span{max-width:55%;text-align:right}
+
+/* AdSense readiness: public navigation and footer */
+.public-nav{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px;padding:12px 14px;background:#fff;border:1px solid #e4e7ec;border-radius:14px}
+.public-nav a,.site-footer a{color:#344054;text-decoration:none;font-size:12px;font-weight:650}
+.public-nav a{padding:7px 9px;border-radius:8px}
+.public-nav a:hover,.site-footer a:hover{text-decoration:underline}
+.site-footer{margin:24px auto 8px;padding:18px 4px;border-top:1px solid #e4e7ec;color:#667085;font-size:12px;line-height:1.7}
+.site-footer-links{display:flex;flex-wrap:wrap;gap:12px;margin:8px 0}
+.site-footer p{margin:6px 0}
+
+</style>
+
+
+<style id="v9-final-ui-polish">
+:root{color-scheme:light}
+body{background:#f4f6fb!important;color:#172033!important}
+header,.header,.topbar,.appHeader{box-shadow:0 10px 28px rgba(15,23,42,.10)}
+label,.label,.small,.hint,.help,.muted{color:#475569}
+input,select,textarea{color:#f8fafc!important;background:#0f172a!important;border:1px solid #64748b!important}
+input::placeholder,textarea::placeholder{color:#cbd5e1!important;opacity:1}
+button{transition:transform .16s ease,box-shadow .16s ease,background-color .16s ease}
+button:not(:disabled):hover{transform:translateY(-1px);box-shadow:0 5px 14px rgba(15,23,42,.12)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #38bdf8!important;outline-offset:2px}
+.result,.card,.panel,.tabIntro{box-shadow:0 4px 18px rgba(15,23,42,.045)}
+.result .rb{color:#263449}
+.outputTab,.storyPlatformTab{cursor:pointer}
+.outputTab.active,.storyPlatformTab.active{font-weight:700}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:760px){.container,.app,.layout,.mainLayout{width:100%!important;max-width:100%!important;padding-left:12px!important;padding-right:12px!important}.results,.result{min-width:0}.outputTabs{overflow-x:auto;flex-wrap:nowrap}.outputTab{white-space:nowrap}}
+</style>
+
+
+<style id="v10-ui">
+/* new cards build their own spacing; .rb is pre-wrap globally */
+.storyCard .rb,.problemCard .rb,.videoCard .rb,details.result .rb{white-space:normal}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:#172033;color:#fff;padding:10px 16px;border-radius:999px;font-size:13px;font-weight:700;opacity:0;pointer-events:none;transition:.2s;z-index:10000}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.postText{white-space:pre-wrap;overflow-wrap:anywhere;font-family:inherit;font-size:14px;line-height:1.65;margin:4px 0 8px;color:#263449}
+.postText.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.55;background:#faf9ff;border:1px solid #e3ddff;border-radius:12px;padding:12px}
+.postBox{border:1px solid #e8e1dc;border-radius:12px;background:#fff;padding:14px}
+.postBox .postText{margin:0 0 10px}
+.postLink{color:#2563eb;font-size:13px;overflow-wrap:anywhere;margin-bottom:8px}
+.postTags{color:#6941c6;font-size:13px;font-weight:700}
+.badges .badge.soft{background:#f2efff!important;color:#6941c6!important;border:1px solid #ddd5ff!important;font-weight:700}
+.btnRow{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.shortBox{margin-top:10px}.shortBox summary{cursor:pointer;color:#6941c6!important;font-weight:700}
+.parts{margin:10px 0 0;padding-left:20px;font-size:13px;line-height:1.55;color:#344054}.parts li{margin-bottom:8px}.parts .wc{color:#98a2b3;font-size:11px;margin-left:6px}
+.paneBar{display:flex;justify-content:flex-end}
+.schedule{display:flex;flex-wrap:wrap;gap:8px;white-space:normal}.schedule span{background:#f2efff;color:#6941c6;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:700}
+.slashStack{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
+.endFrame{margin-top:8px;color:#475467!important}
+.warnText{color:#b42318!important;font-weight:800}
+.errCard{border-color:#fda29b!important}
+.aiStatus.error{color:#b42318;font-weight:700}.aiStatus.ok{color:#067647;font-weight:700}
+details.result>summary.rh{cursor:pointer;list-style:none}
+.qaBlock{margin:10px 0;padding:10px 12px;border-radius:10px;border:1px solid #e4e7ec;background:#fff;font-size:13px;line-height:1.55}
+.qaBlock ul{margin:6px 0 0;padding-left:20px}.qaBlock li{margin-bottom:5px}
+.qaBlock summary{cursor:pointer;font-weight:800;color:#344054;outline:none}
+.errBlock{border-color:#fda29b;background:#fff7f5}.claimBlock{border-color:#fcd34d;background:#fffbea}
+.warnBlock{border-color:#fcd34d;background:#fffbeb}.noteBlock{border-color:#c7d2fe;background:#f8faff}
+</style>
+
+<style id="affiliflow-premium-ai-workspace">
+/* Theme A: Premium AI Workspace — visual-only polish; preserves app logic */
+:root{--af-navy:#10233f;--af-navy-2:#19365b;--af-blue:#2563eb;--af-blue-soft:#eff6ff;--af-ink:#172033;--af-muted:#64748b;--af-line:#dbe3ef;--af-bg:#f4f7fb;--af-shadow:0 8px 24px rgba(16,35,63,.065)}
+html{scroll-behavior:smooth} body{background:linear-gradient(180deg,#f7f9fc 0%,#f1f5fa 100%)!important;color:var(--af-ink)!important;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif!important}
+.app{max-width:1180px!important;padding:26px!important}
+header{background:linear-gradient(120deg,var(--af-navy),#18375d)!important;color:#fff!important;padding:20px 22px!important;border:1px solid #233f64!important;border-radius:20px!important;box-shadow:0 12px 30px rgba(16,35,63,.14)!important;margin-bottom:24px!important}
+header .title{color:#fff!important;font-size:27px!important;letter-spacing:-.5px}header .sub,header .titleSupportLine span{color:#d5e2f3!important}header .bag{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:8px;font-size:25px}
+header .badge{background:#dbeafe!important;color:#1d4ed8!important;border:1px solid #bfdbfe!important}header .supportBtn{background:rgba(255,255,255,.1)!important;border:1px solid rgba(255,255,255,.28)!important;color:#fff!important;box-shadow:none!important}header .ghost{background:#fff!important;color:var(--af-navy)!important;border:1px solid #dbeafe!important}
+.grid{gap:20px!important;align-items:start}.card,.result,.uploadBox,.settingsBox,.tipCard,.flowHero{border:1px solid var(--af-line)!important;border-radius:18px!important;box-shadow:var(--af-shadow)!important;background:#fff!important}.card{padding:22px!important}
+h1,h2,h3,h4,.rh,.tabTitle,.sectionTitle{color:var(--af-navy)!important;letter-spacing:-.2px}h2{font-size:17px!important;font-weight:800!important;margin-bottom:16px!important}
+label{color:#34445d!important;font-weight:750!important}.small,.sub,.subtitle,.flowSub,.tipText{color:var(--af-muted)!important}
+button{border-radius:11px!important;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease!important}button:not(:disabled):hover{transform:translateY(-1px)}
+.primary{background:linear-gradient(135deg,#2563eb,#1d4ed8)!important;box-shadow:0 6px 14px rgba(37,99,235,.18)!important}.ghost,.actions button:not(.primary){background:#fff!important;color:#263750!important;border:1px solid #cbd7e8!important;box-shadow:none!important}
+input:not([type=checkbox]):not([type=radio]),select,textarea{border:1px solid #cbd5e1!important;border-radius:10px!important;background:#fff!important;color:#172033!important}input:focus,select:focus,textarea:focus{border-color:#2563eb!important;box-shadow:0 0 0 3px rgba(37,99,235,.12)!important}
+.rh{background:#f8fafc!important;border-bottom:1px solid #e2e8f0!important;color:var(--af-navy)!important}.rb{color:#334155!important}.result .copy{background:#eff6ff!important;color:#1d4ed8!important;border:1px solid #bfdbfe!important}
+/* All category and output tabs share one professional visual language */
+.slashCategoryTabs,.outputTabs,.storyPlatformTabs,.tabs,.tabBar,.mainTabs{display:flex;flex-wrap:wrap;gap:8px!important;padding:8px!important;background:#edf2f8!important;border:1px solid #dbe4f0!important;border-radius:14px!important;margin:0 0 18px!important}
+.slashCategoryTab,.outputTab,.storyPlatformTab,.tabButton,.tab-btn,.mainTab,.main-tab{background:transparent!important;color:#475569!important;border:1px solid transparent!important;border-radius:10px!important;padding:10px 13px!important;font-weight:700!important;box-shadow:none!important}
+.slashCategoryTab.active,.outputTab.active,.storyPlatformTab.active,.tabButton.active,.tab-btn.active,.mainTab.active,.main-tab.active,[aria-selected="true"]{background:#fff!important;color:#1d4ed8!important;border-color:#c9d9f5!important;box-shadow:0 2px 6px rgba(16,35,63,.07)!important}
+.tabIntro{background:linear-gradient(135deg,#f8fbff,#eef5ff)!important;border:1px solid #d8e6fb!important;border-radius:14px!important;color:#475569!important;padding:16px 18px!important;margin-bottom:16px!important}
+.postBox,.qaBlock{border-color:#dbe4f0!important;border-radius:13px!important}.postText{color:#263449!important}.badges .badge{background:#eff6ff!important;color:#1d4ed8!important;border:1px solid #dbeafe!important}
+.site-footer{margin-top:32px!important;padding:22px 4px 12px!important;border-top:1px solid #dbe3ef!important;color:#64748b!important}.site-footer-links{gap:9px!important}.site-footer-links a{display:inline-block;padding:8px 10px;border:1px solid #dbe3ef;border-radius:9px;background:#fff;color:#334155!important}.site-footer-links a:hover{background:#eff6ff;text-decoration:none!important}
+@media(max-width:820px){.app{padding:14px!important}header{padding:16px!important;align-items:flex-start!important}.grid{grid-template-columns:1fr!important}.slashCategoryTabs,.outputTabs,.storyPlatformTabs,.tabs,.tabBar,.mainTabs{overflow-x:auto;flex-wrap:nowrap!important}.slashCategoryTab,.outputTab,.storyPlatformTab{white-space:nowrap;flex:0 0 auto}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}button{transition:none!important}}
+</style>
+
+
+<style id="adsense-top-navigation-fix">
+/* Public policy navigation at the top for visitors and site reviewers. */
+.top-public-nav{position:relative;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 16px;padding:10px 12px;background:#fff;border:1px solid #dbe3ef;border-radius:14px;box-shadow:0 4px 14px rgba(16,35,63,.045)}
+.top-public-nav a{display:inline-flex;align-items:center;min-height:36px;padding:8px 11px;border-radius:9px;color:#334155!important;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap}
+.top-public-nav a:hover,.top-public-nav a:focus-visible{background:#eff6ff;color:#1d4ed8!important;outline:2px solid #bfdbfe;outline-offset:1px}
+.top-public-nav .nav-brand{margin-right:auto;background:#10233f;color:#fff!important;font-size:13px;letter-spacing:.1px}
+.top-public-nav .nav-brand:hover{background:#19365b;color:#fff!important}
+.site-footer-links a{font-size:12px}
+@media(max-width:640px){.top-public-nav{gap:5px;padding:8px}.top-public-nav .nav-brand{width:100%;margin-right:0}.top-public-nav a{padding:8px 9px;font-size:11px}}
+@media(max-width:640px){header{flex-wrap:wrap;align-items:flex-start!important;padding:14px!important;gap:12px!important}header .brand{width:100%;flex:1 1 100%;gap:9px;align-items:flex-start}header .brand>div:last-child{flex:1;min-width:0}header .title{font-size:20px!important;line-height:1.25;overflow-wrap:anywhere}header .bag{font-size:22px!important;padding:6px!important;flex:0 0 auto}header .titleSupportLine{align-items:flex-start;gap:7px;flex-direction:column}header .titleSupportLine .supportBtn{max-width:100%;white-space:normal}header .titleSupportLine span{white-space:normal;overflow-wrap:anywhere;line-height:1.4}header>button{width:100%}.actions{flex-wrap:wrap}.actions button{min-width:0}.two{grid-template-columns:1fr}}
+</style>
+
+<style id="v10-final-mobile-header-fix">
+@media(max-width:640px){
+  header{display:flex!important;flex-wrap:wrap!important;align-items:flex-start!important;gap:12px!important;padding:14px!important;min-width:0!important}
+  header .brand{display:flex!important;flex:1 1 100%!important;width:100%!important;min-width:0!important;align-items:flex-start!important;gap:9px!important}
+  header .brand>div:last-child{flex:1 1 auto!important;min-width:0!important;width:0!important}
+  header .title{font-size:20px!important;line-height:1.25!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:normal!important}
+  header .title .badge{display:inline-block!important;vertical-align:middle!important;white-space:nowrap!important;margin-top:3px!important}
+  header .bag{flex:0 0 auto!important;font-size:22px!important;padding:6px!important}
+  header .titleSupportLine{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:7px!important;max-width:100%!important}
+  header .titleSupportLine .supportBtn{max-width:100%!important;white-space:normal!important}
+  header .titleSupportLine span{display:block!important;max-width:100%!important;white-space:normal!important;overflow-wrap:anywhere!important;line-height:1.4!important}
+  header>button{flex:1 1 100%!important;width:100%!important}
+  .actions{display:flex!important;flex-wrap:wrap!important}
+  .actions button{flex:1 1 100%!important;min-width:0!important}
+}
+</style>
+
+<style id="affiliflow-v114-modern-redesign">
+:root{color-scheme:dark;--bg:#080a12;--panel:#12131f;--panel2:#171a2a;--line:rgba(165,150,255,.18);--text:#f4f4ff;--muted:#a9abc4;--accent:#8b5cf6;--accent2:#38bdf8}
+html{background:#080a12!important}body{margin:0!important;background:radial-gradient(ellipse at 8% 8%,rgba(124,58,237,.18),transparent 38%),radial-gradient(ellipse at 92% 72%,rgba(13,148,136,.13),transparent 36%),#080a12!important;color:#f4f4ff!important;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif!important}
+.app{width:min(1540px,100%)!important;max-width:1540px!important;margin:0 auto!important;padding:28px 30px 48px!important}
+header{background:#08080e!important;border:1px solid rgba(255,255,255,.07)!important;border-radius:18px!important;padding:18px 22px!important;margin:0 0 28px!important;color:#f4f4ff!important;box-shadow:0 14px 42px rgba(0,0,0,.22)!important}
+.brand,.title,.titleSupportLine,.sub{color:#f4f4ff!important}.title{font-weight:800!important;letter-spacing:-.035em!important}.sub{color:#a7a8c3!important}
+.grid{display:grid!important;grid-template-columns:minmax(330px,0.34fr) minmax(0,1fr)!important;gap:24px!important;align-items:start!important}
+.card,.settingsBox,.uploadBox,.preview,.result,.tabIntro,.storyCard{background:linear-gradient(145deg,rgba(24,24,42,.96),rgba(12,18,29,.96))!important;color:#f4f4ff!important;border:1px solid var(--line)!important;border-radius:22px!important;box-shadow:0 16px 42px rgba(0,0,0,.16)!important;overflow:hidden}
+.card>h2,.card>h3,.card .cardHeader,.settingsBox>h3{background:rgba(255,255,255,.025)!important;color:#f4f4ff!important;border-bottom:1px solid var(--line)!important}
+label,.small,.hint,.help,.muted,.description,p{color:#b9bdd5!important}h1,h2,h3,h4,strong{color:#f5f4ff!important}
+input,select,textarea{background:#090b13!important;color:#f5f4ff!important;border:1px solid rgba(167,139,250,.23)!important;border-radius:12px!important;min-height:44px}input::placeholder,textarea::placeholder{color:#777b98!important;opacity:1}input:focus,select:focus,textarea:focus{outline:2px solid rgba(139,92,246,.55)!important;outline-offset:1px}
+button{border-radius:12px!important;transition:transform .16s ease,border-color .16s ease,background .16s ease!important}button:not(:disabled):hover{transform:translateY(-1px)}
+button.primary,.primary,button[type=submit]{background:linear-gradient(110deg,#7c3aed,#2563eb)!important;color:white!important;border:1px solid rgba(196,181,253,.35)!important}
+.tabBar,.tabs,.outputTabs,.storyPlatformTabs{background:#111524!important;border:1px solid var(--line)!important;border-radius:16px!important;padding:6px!important;gap:8px!important}
+.outputTab,.storyPlatformTab,.tabButton,.tabs button{background:transparent!important;color:#aeb4ce!important;border:1px solid transparent!important;border-radius:12px!important}
+.outputTab.active,.storyPlatformTab.active,.tabButton.active,.tabs button.active{background:linear-gradient(135deg,rgba(124,58,237,.24),rgba(37,99,235,.18))!important;color:#fff!important;border-color:rgba(167,139,250,.4)!important}
+pre,.rb,.result .rb{color:#e6e8fa!important;white-space:pre-wrap!important;overflow-wrap:anywhere!important}a{color:#a5b4fc!important}
+/* Restore contrast on all headings and avoid inherited light header strips */
+.card header,.card .header,.card .panelHeader,.card .sectionHeader,.workspaceHeader,.aiWorkspaceHeader{background:#151728!important;color:#f4f4ff!important;border-color:var(--line)!important}
+@media(max-width:900px){.app{padding:16px!important}.grid{grid-template-columns:minmax(0,1fr)!important}.card{min-width:0!important}header{flex-wrap:wrap!important;padding:14px!important}}
+@media(max-width:560px){.app{padding:10px!important}.grid{gap:14px!important}header{border-radius:14px!important;margin-bottom:16px!important}.card,.settingsBox{border-radius:16px!important}.two{grid-template-columns:minmax(0,1fr)!important}}
+</style>
+</head>
+<body>
+
+
+<div class="app">
+<nav class="public-nav top-public-nav" aria-label="Navigasi utama dan maklumat laman">
+  <a href="index.html" class="nav-brand" aria-label="AffiliFlow AI halaman utama">✦ AffiliFlow AI</a>
+  <a href="about.html">Tentang Kami</a>
+  <a href="panduan-affiliate.html">Panduan Affiliate</a>
+  <a href="privacy.html">Dasar Privasi</a>
+  <a href="terms.html">Terma Penggunaan</a>
+  <a href="contact.html">Hubungi</a>
+</nav>
+<header>
+  <div class="brand"><div class="bag">🛍️</div><div><div class="title">AffiliFlow AI <span class="badge">V11 AI</span></div><div class="titleSupportLine"><button class="supportBtn" onclick="openSupport()">🎁 Sumbangan AffiliFlow AI</button><span>Sumbangan anda serendah RM2 dapat membantu kami teruskan AffiliFlow AI</span></div><div class="sub"></div></div></div>
+  <button class="ghost" onclick="clearForm()">Reset</button>
+</header>
+
+<div class="grid">
+<section class="card">
+<h2>📦 Maklumat Produk</h2>
+<label>Nama produk</label><input id="name" placeholder="Contoh: SerangGo">
+<label>👤 Nama panggilan penulis <span style="color:#8b5cf6">(optional)</span></label><input id="creatorName" placeholder="Contoh: Abdul">
+<div class="small">AI boleh menggunakan nama ini secara natural dalam penceritaan. Cerita hipotetikal tidak akan dipersembahkan sebagai pengalaman sebenar.</div>
+<div class="two">
+<div><label>Harga (RM)</label><input id="price" type="number" step="0.01" placeholder="12.00"></div>
+<div><label>Sasaran pembeli</label><input id="target" placeholder="Ibu bapa, pekerja..."></div>
+</div>
+
+
+<div class="uploadBox">
+  <label>📸 Product reference images <span style="color:#ff8a70">* 1–5 images</span></label>
+  <input id="productImages" type="file" accept="image/png,image/jpeg,image/webp" multiple>
+  <div id="productGallery" class="gallery"></div><div id="productCount" class="small"></div>
+  <div class="small">Upload 1–5 gambar produk. Jika hanya ada 1 gambar pun sudah mencukupi.</div>
+</div>
+
+<label>🔗 Affiliate URL</label>
+<input id="affiliateUrl" type="url" placeholder="Contoh: https://s.shopee.com.my/xxxxxx">
+<div class="small">Link ini akan dimasukkan automatik ke caption, CTA dan bahagian Affiliate Link.</div>
+<label>📝 Product Description / Maklumat produk tambahan <span style="color:#8b5cf6">(optional)</span></label><textarea id="productDescription" rows="5" placeholder="Copy-paste penerangan produk daripada Shopee / TikTok Shop: ciri, cara penggunaan, kandungan pakej, spesifikasi dan dakwaan penjual."></textarea><div class="small">AI menggunakan teks ini sebagai konteks. Dakwaan penjual yang belum disahkan tidak akan dianggap fakta pasti.</div>
+<label>💡 Selling point <span style="color:#8b5cf6">(optional)</span></label><textarea id="points" placeholder="Tak tahu selling point? Biarkan kosong.
+
+Jika ada maklumat penting, masukkan satu baris satu. Contoh:
+100% organik
+Tiada racun
+Mudah digunakan"></textarea>
+<div class="small">Tak pasti nak isi apa? <b>Tak perlu isi.</b> AffiliFlow AI akan bina content berdasarkan nama produk, sasaran pembeli dan konteks produk yang dapat dikenal pasti. Selling point yang anda masukkan hanya digunakan jika benar-benar diberikan oleh anda — app tidak sepatutnya mereka claim atau spesifikasi sendiri.</div>
+<label>Gaya penulisan</label><select id="style"><option>Santai / kawan</option><option>Review jujur</option><option>Soft sell</option><option>Hard sell</option><option>Problem → Solution</option></select>
+
+<div class="uploadBox">
+  <label>👤 Character reference <span style="color:#b9aaa0">(optional)</span></label>
+  <input id="characterImage" type="file" accept="image/png,image/jpeg,image/webp">
+  <div id="characterPreview" class="preview"></div>
+  <div class="small">Jika upload, prompt akan arahkan Flow/Veo mengekalkan rupa, pakaian dan identiti visual character.</div>
+</div>
+
+<div class="two">
+<div><label>⏱️ Target setiap clip</label>
+<select id="duration">
+<option value="8" selected>8 saat · recommended</option>
+</select></div>
+<div><label>🎬 Jenis video</label>
+<select id="sceneType">
+<option>Product Demo</option><option>Talking Head UGC</option>
+<option>Unboxing</option><option>Problem → Solution</option>
+<option>Before / After</option><option>Product Showcase</option>
+</select></div>
+</div>
+
+<div class="settingsBox">
+  <label>🧹 Background cleanup</label>
+  <div class="chips">
+    <label class="chip"><input type="checkbox" id="removeBgText" checked> Remove background promotional text</label>
+    <label class="chip"><input type="checkbox" id="removeBgGraphics" checked> Remove background graphics</label>
+    <label class="chip"><input type="checkbox" id="protectProductText" checked> Protect product text / logo / design</label>
+  </div>
+  <label>🌄 New background</label>
+  <select id="newBackground">
+    <option>Modern Malaysian home</option>
+    <option>Minimal studio</option>
+    <option>Modern café</option>
+    <option>Office</option>
+    <option>Outdoor lifestyle</option>
+    <option>Shopping mall</option>
+    <option>Kitchen</option>
+    <option>Garden</option>
+    <option>Custom background</option>
+  </select>
+  <input id="customBackground" placeholder="Contoh: Malaysian night market, realistic">
+</div>
+
+<div class="two">
+<div><label>🎯 Prompt accuracy</label>
+<select id="accuracy">
+<option>Maximum Accuracy</option><option>High Accuracy</option><option>Standard</option>
+</select></div>
+<div><label>🎬 Video output</label>
+<select id="sceneCount"><option value="auto" selected>6 ideas · 2 clips each</option></select></div>
+</div>
+
+<label>Gaya prompt video</label>
+<select id="videoStyle">
+<option>Natural (nampak macam UGC sebenar)</option><option>Google Flow / Veo — Realistic UGC</option>
+<option>Realistic Malaysian UGC</option>
+<option>Product commercial</option>
+<option>Cinematic</option>
+<option>Product-only</option>
+</select>
+<div class="slashBox">
+  <div class="slashTitle">⚡ Slash Prompt Shortcuts</div>
+  <div class="slashDesc">
+    AffiliFlow menggunakan format <b>/command</b> sebagai shortcut untuk arah visual, kamera, lighting dan gaya commercial.
+    AffiliFlow akan pilih, faham dan kembangkan slash commands ini menjadi arahan visual sebenar dalam prompt penuh. Anda boleh ubah atau tambah sendiri.
+  </div>
+  <div class="slashQuick">
+    <div class="slashCategoryTabs" role="tablist" aria-label="Slash prompt categories"><button type="button" class="slashCategoryTab active" role="tab" aria-selected="true" data-slash-tab="Lighting & Mood" onclick="showSlashCategory('Lighting & Mood')">Lighting & Mood</button><button type="button" class="slashCategoryTab" role="tab" aria-selected="false" data-slash-tab="Transitions" onclick="showSlashCategory('Transitions')">Transitions</button><button type="button" class="slashCategoryTab" role="tab" aria-selected="false" data-slash-tab="Product Reveal & Motion" onclick="showSlashCategory('Product Reveal & Motion')">Product Reveal & Motion</button><button type="button" class="slashCategoryTab" role="tab" aria-selected="false" data-slash-tab="Camera & Angles" onclick="showSlashCategory('Camera & Angles')">Camera & Angles</button><button type="button" class="slashCategoryTab" role="tab" aria-selected="false" data-slash-tab="Materials & Texture" onclick="showSlashCategory('Materials & Texture')">Materials & Texture</button><button type="button" class="slashCategoryTab" role="tab" aria-selected="false" data-slash-tab="Nature & Weather" onclick="showSlashCategory('Nature & Weather')">Nature & Weather</button><button type="button" class="slashCategoryTab" role="tab" aria-selected="false" data-slash-tab="Environments" onclick="showSlashCategory('Environments')">Environments</button><button type="button" class="slashCategoryTab" role="tab" aria-selected="false" data-slash-tab="Art & Animation" onclick="showSlashCategory('Art & Animation')">Art & Animation</button></div>
+<div class="slashCategory active" data-slash-category="Lighting & Mood"><div class="slashCategoryTitle">Lighting & Mood</div><div class="slashCommandGrid"><button type="button" title="Tambah /GoldenHourProduct" onclick="addSlash(&quot;/GoldenHourProduct&quot;)">/GoldenHourProduct</button><button type="button" title="Tambah /SunsetProductAd" onclick="addSlash(&quot;/SunsetProductAd&quot;)">/SunsetProductAd</button><button type="button" title="Tambah /SunriseProductAd" onclick="addSlash(&quot;/SunriseProductAd&quot;)">/SunriseProductAd</button><button type="button" title="Tambah /BlueHourProduct" onclick="addSlash(&quot;/BlueHourProduct&quot;)">/BlueHourProduct</button><button type="button" title="Tambah /StudioLightingAd" onclick="addSlash(&quot;/StudioLightingAd&quot;)">/StudioLightingAd</button><button type="button" title="Tambah /DramaticLightingAd" onclick="addSlash(&quot;/DramaticLightingAd&quot;)">/DramaticLightingAd</button><button type="button" title="Tambah /SoftLightingAd" onclick="addSlash(&quot;/SoftLightingAd&quot;)">/SoftLightingAd</button><button type="button" title="Tambah /HardLightProduct" onclick="addSlash(&quot;/HardLightProduct&quot;)">/HardLightProduct</button><button type="button" title="Tambah /RimLightProduct" onclick="addSlash(&quot;/RimLightProduct&quot;)">/RimLightProduct</button><button type="button" title="Tambah /BacklightProduct" onclick="addSlash(&quot;/BacklightProduct&quot;)">/BacklightProduct</button><button type="button" title="Tambah /SpotlightProduct" onclick="addSlash(&quot;/SpotlightProduct&quot;)">/SpotlightProduct</button><button type="button" title="Tambah /VolumetricLightAd" onclick="addSlash(&quot;/VolumetricLightAd&quot;)">/VolumetricLightAd</button><button type="button" title="Tambah /MoonlightProduct" onclick="addSlash(&quot;/MoonlightProduct&quot;)">/MoonlightProduct</button><button type="button" title="Tambah /CandlelightProduct" onclick="addSlash(&quot;/CandlelightProduct&quot;)">/CandlelightProduct</button><button type="button" title="Tambah /DiscoLightProduct" onclick="addSlash(&quot;/DiscoLightProduct&quot;)">/DiscoLightProduct</button></div></div>
+    <div class="slashCategory" data-slash-category="Transitions"><div class="slashCategoryTitle">Transitions</div><div class="slashCommandGrid"><button type="button" title="Tambah /LiquidTransition" onclick="addSlash(&quot;/LiquidTransition&quot;)">/LiquidTransition</button><button type="button" title="Tambah /SmokeTransition" onclick="addSlash(&quot;/SmokeTransition&quot;)">/SmokeTransition</button><button type="button" title="Tambah /FireTransition" onclick="addSlash(&quot;/FireTransition&quot;)">/FireTransition</button><button type="button" title="Tambah /IceTransition" onclick="addSlash(&quot;/IceTransition&quot;)">/IceTransition</button><button type="button" title="Tambah /GlassTransition" onclick="addSlash(&quot;/GlassTransition&quot;)">/GlassTransition</button><button type="button" title="Tambah /MirrorTransition" onclick="addSlash(&quot;/MirrorTransition&quot;)">/MirrorTransition</button><button type="button" title="Tambah /LightTransition" onclick="addSlash(&quot;/LightTransition&quot;)">/LightTransition</button><button type="button" title="Tambah /FlashTransition" onclick="addSlash(&quot;/FlashTransition&quot;)">/FlashTransition</button><button type="button" title="Tambah /ParticleTransition" onclick="addSlash(&quot;/ParticleTransition&quot;)">/ParticleTransition</button><button type="button" title="Tambah /EnergyTransition" onclick="addSlash(&quot;/EnergyTransition&quot;)">/EnergyTransition</button><button type="button" title="Tambah /PortalTransition" onclick="addSlash(&quot;/PortalTransition&quot;)">/PortalTransition</button><button type="button" title="Tambah /VortexTransition" onclick="addSlash(&quot;/VortexTransition&quot;)">/VortexTransition</button><button type="button" title="Tambah /ZoomTransition" onclick="addSlash(&quot;/ZoomTransition&quot;)">/ZoomTransition</button><button type="button" title="Tambah /WhipPanTransition" onclick="addSlash(&quot;/WhipPanTransition&quot;)">/WhipPanTransition</button><button type="button" title="Tambah /MatchCutTransition" onclick="addSlash(&quot;/MatchCutTransition&quot;)">/MatchCutTransition</button></div></div>
+    <div class="slashCategory" data-slash-category="Product Reveal & Motion"><div class="slashCategoryTitle">Product Reveal & Motion</div><div class="slashCommandGrid"><button type="button" title="Tambah /ProductHeroShot" onclick="addSlash(&quot;/ProductHeroShot&quot;)">/ProductHeroShot</button><button type="button" title="Tambah /LuxuryProductReveal" onclick="addSlash(&quot;/LuxuryProductReveal&quot;)">/LuxuryProductReveal</button><button type="button" title="Tambah /CinematicProductReveal" onclick="addSlash(&quot;/CinematicProductReveal&quot;)">/CinematicProductReveal</button><button type="button" title="Tambah /Product360Spin" onclick="addSlash(&quot;/Product360Spin&quot;)">/Product360Spin</button><button type="button" title="Tambah /ProductSlowMotion" onclick="addSlash(&quot;/ProductSlowMotion&quot;)">/ProductSlowMotion</button><button type="button" title="Tambah /ProductFloating" onclick="addSlash(&quot;/ProductFloating&quot;)">/ProductFloating</button><button type="button" title="Tambah /ProductGravityDefy" onclick="addSlash(&quot;/ProductGravityDefy&quot;)">/ProductGravityDefy</button><button type="button" title="Tambah /ProductLightSweep" onclick="addSlash(&quot;/ProductLightSweep&quot;)">/ProductLightSweep</button><button type="button" title="Tambah /ProductMacroReveal" onclick="addSlash(&quot;/ProductMacroReveal&quot;)">/ProductMacroReveal</button><button type="button" title="Tambah /ProductCloseUp" onclick="addSlash(&quot;/ProductCloseUp&quot;)">/ProductCloseUp</button><button type="button" title="Tambah /ProductRotation" onclick="addSlash(&quot;/ProductRotation&quot;)">/ProductRotation</button></div></div>
+    <div class="slashCategory" data-slash-category="Camera & Angles"><div class="slashCategoryTitle">Camera & Angles</div><div class="slashCommandGrid"><button type="button" title="Tambah /CinematicPushIn" onclick="addSlash(&quot;/CinematicPushIn&quot;)">/CinematicPushIn</button><button type="button" title="Tambah /CinematicPullOut" onclick="addSlash(&quot;/CinematicPullOut&quot;)">/CinematicPullOut</button><button type="button" title="Tambah /FastPushIn" onclick="addSlash(&quot;/FastPushIn&quot;)">/FastPushIn</button><button type="button" title="Tambah /SlowPushIn" onclick="addSlash(&quot;/SlowPushIn&quot;)">/SlowPushIn</button><button type="button" title="Tambah /TopDownProduct" onclick="addSlash(&quot;/TopDownProduct&quot;)">/TopDownProduct</button><button type="button" title="Tambah /LowAngleProduct" onclick="addSlash(&quot;/LowAngleProduct&quot;)">/LowAngleProduct</button><button type="button" title="Tambah /HighAngleProduct" onclick="addSlash(&quot;/HighAngleProduct&quot;)">/HighAngleProduct</button><button type="button" title="Tambah /SideProfileProduct" onclick="addSlash(&quot;/SideProfileProduct&quot;)">/SideProfileProduct</button><button type="button" title="Tambah /FrontProfileProduct" onclick="addSlash(&quot;/FrontProfileProduct&quot;)">/FrontProfileProduct</button><button type="button" title="Tambah /OverShoulderProduct" onclick="addSlash(&quot;/OverShoulderProduct&quot;)">/OverShoulderProduct</button><button type="button" title="Tambah /DroneProductShot" onclick="addSlash(&quot;/DroneProductShot&quot;)">/DroneProductShot</button><button type="button" title="Tambah /HandheldProductAd" onclick="addSlash(&quot;/HandheldProductAd&quot;)">/HandheldProductAd</button><button type="button" title="Tambah /SteadicamProduct" onclick="addSlash(&quot;/SteadicamProduct&quot;)">/SteadicamProduct</button><button type="button" title="Tambah /OrbitReveal" onclick="addSlash(&quot;/OrbitReveal&quot;)">/OrbitReveal</button><button type="button" title="Tambah /SpiralCameraMove" onclick="addSlash(&quot;/SpiralCameraMove&quot;)">/SpiralCameraMove</button></div></div>
+    <div class="slashCategory" data-slash-category="Materials & Texture"><div class="slashCategoryTitle">Materials & Texture</div><div class="slashCommandGrid"><button type="button" title="Tambah /MetallicProductAd" onclick="addSlash(&quot;/MetallicProductAd&quot;)">/MetallicProductAd</button><button type="button" title="Tambah /ChromeProductAd" onclick="addSlash(&quot;/ChromeProductAd&quot;)">/ChromeProductAd</button><button type="button" title="Tambah /GoldProductAd" onclick="addSlash(&quot;/GoldProductAd&quot;)">/GoldProductAd</button><button type="button" title="Tambah /SilverProductAd" onclick="addSlash(&quot;/SilverProductAd&quot;)">/SilverProductAd</button><button type="button" title="Tambah /CrystalProductAd" onclick="addSlash(&quot;/CrystalProductAd&quot;)">/CrystalProductAd</button><button type="button" title="Tambah /MarbleProductAd" onclick="addSlash(&quot;/MarbleProductAd&quot;)">/MarbleProductAd</button><button type="button" title="Tambah /VelvetProductAd" onclick="addSlash(&quot;/VelvetProductAd&quot;)">/VelvetProductAd</button><button type="button" title="Tambah /SilkProductAd" onclick="addSlash(&quot;/SilkProductAd&quot;)">/SilkProductAd</button><button type="button" title="Tambah /LeatherProductAd" onclick="addSlash(&quot;/LeatherProductAd&quot;)">/LeatherProductAd</button><button type="button" title="Tambah /WoodProductAd" onclick="addSlash(&quot;/WoodProductAd&quot;)">/WoodProductAd</button><button type="button" title="Tambah /PaperProductAd" onclick="addSlash(&quot;/PaperProductAd&quot;)">/PaperProductAd</button><button type="button" title="Tambah /FabricProductAd" onclick="addSlash(&quot;/FabricProductAd&quot;)">/FabricProductAd</button><button type="button" title="Tambah /ConcreteProductAd" onclick="addSlash(&quot;/ConcreteProductAd&quot;)">/ConcreteProductAd</button><button type="button" title="Tambah /GlassProductAd" onclick="addSlash(&quot;/GlassProductAd&quot;)">/GlassProductAd</button><button type="button" title="Tambah /LiquidMetalAd" onclick="addSlash(&quot;/LiquidMetalAd&quot;)">/LiquidMetalAd</button></div></div>
+    <div class="slashCategory" data-slash-category="Nature & Weather"><div class="slashCategoryTitle">Nature & Weather</div><div class="slashCommandGrid"><button type="button" title="Tambah /BotanicalGloom" onclick="addSlash(&quot;/BotanicalGloom&quot;)">/BotanicalGloom</button><button type="button" title="Tambah /FlowerExplosion" onclick="addSlash(&quot;/FlowerExplosion&quot;)">/FlowerExplosion</button><button type="button" title="Tambah /PetalStorm" onclick="addSlash(&quot;/PetalStorm&quot;)">/PetalStorm</button><button type="button" title="Tambah /LeafStorm" onclick="addSlash(&quot;/LeafStorm&quot;)">/LeafStorm</button><button type="button" title="Tambah /RainProductAd" onclick="addSlash(&quot;/RainProductAd&quot;)">/RainProductAd</button><button type="button" title="Tambah /WaterDropMacro" onclick="addSlash(&quot;/WaterDropMacro&quot;)">/WaterDropMacro</button><button type="button" title="Tambah /OceanSplashAd" onclick="addSlash(&quot;/OceanSplashAd&quot;)">/OceanSplashAd</button><button type="button" title="Tambah /WaveReveal" onclick="addSlash(&quot;/WaveReveal&quot;)">/WaveReveal</button><button type="button" title="Tambah /BubbleProductAd" onclick="addSlash(&quot;/BubbleProductAd&quot;)">/BubbleProductAd</button><button type="button" title="Tambah /DewDropProduct" onclick="addSlash(&quot;/DewDropProduct&quot;)">/DewDropProduct</button><button type="button" title="Tambah /SnowfallProductAd" onclick="addSlash(&quot;/SnowfallProductAd&quot;)">/SnowfallProductAd</button><button type="button" title="Tambah /SnowStormProduct" onclick="addSlash(&quot;/SnowStormProduct&quot;)">/SnowStormProduct</button><button type="button" title="Tambah /LightningProductAd" onclick="addSlash(&quot;/LightningProductAd&quot;)">/LightningProductAd</button><button type="button" title="Tambah /ThunderstormProduct" onclick="addSlash(&quot;/ThunderstormProduct&quot;)">/ThunderstormProduct</button><button type="button" title="Tambah /WindProductAd" onclick="addSlash(&quot;/WindProductAd&quot;)">/WindProductAd</button></div></div>
+    <div class="slashCategory" data-slash-category="Environments"><div class="slashCategoryTitle">Environments</div><div class="slashCommandGrid"><button type="button" title="Tambah /ProductInNature" onclick="addSlash(&quot;/ProductInNature&quot;)">/ProductInNature</button><button type="button" title="Tambah /ProductInSpace" onclick="addSlash(&quot;/ProductInSpace&quot;)">/ProductInSpace</button><button type="button" title="Tambah /ProductOnTheMoon" onclick="addSlash(&quot;/ProductOnTheMoon&quot;)">/ProductOnTheMoon</button><button type="button" title="Tambah /ProductUnderwater" onclick="addSlash(&quot;/ProductUnderwater&quot;)">/ProductUnderwater</button><button type="button" title="Tambah /ProductInTheClouds" onclick="addSlash(&quot;/ProductInTheClouds&quot;)">/ProductInTheClouds</button><button type="button" title="Tambah /ProductInTheDesert" onclick="addSlash(&quot;/ProductInTheDesert&quot;)">/ProductInTheDesert</button><button type="button" title="Tambah /ProductInTheJungle" onclick="addSlash(&quot;/ProductInTheJungle&quot;)">/ProductInTheJungle</button><button type="button" title="Tambah /ProductInTheOcean" onclick="addSlash(&quot;/ProductInTheOcean&quot;)">/ProductInTheOcean</button><button type="button" title="Tambah /ProductInTheMountains" onclick="addSlash(&quot;/ProductInTheMountains&quot;)">/ProductInTheMountains</button><button type="button" title="Tambah /ProductInTheArctic" onclick="addSlash(&quot;/ProductInTheArctic&quot;)">/ProductInTheArctic</button><button type="button" title="Tambah /ProductInVolcano" onclick="addSlash(&quot;/ProductInVolcano&quot;)">/ProductInVolcano</button><button type="button" title="Tambah /ProductInTheSky" onclick="addSlash(&quot;/ProductInTheSky&quot;)">/ProductInTheSky</button><button type="button" title="Tambah /ProductInTheCity" onclick="addSlash(&quot;/ProductInTheCity&quot;)">/ProductInTheCity</button><button type="button" title="Tambah /ProductCyberpunkWorld" onclick="addSlash(&quot;/ProductCyberpunkWorld&quot;)">/ProductCyberpunkWorld</button><button type="button" title="Tambah /ProductFantasyWorld" onclick="addSlash(&quot;/ProductFantasyWorld&quot;)">/ProductFantasyWorld</button></div></div>
+    <div class="slashCategory" data-slash-category="Art & Animation"><div class="slashCategoryTitle">Art & Animation</div><div class="slashCommandGrid"><button type="button" title="Tambah /PixarStyleAd" onclick="addSlash(&quot;/PixarStyleAd&quot;)">/PixarStyleAd</button><button type="button" title="Tambah /ClaymationAd" onclick="addSlash(&quot;/ClaymationAd&quot;)">/ClaymationAd</button><button type="button" title="Tambah /WatercolorAd" onclick="addSlash(&quot;/WatercolorAd&quot;)">/WatercolorAd</button><button type="button" title="Tambah /LegoAd" onclick="addSlash(&quot;/LegoAd&quot;)">/LegoAd</button><button type="button" title="Tambah /MiniatureProductWorld" onclick="addSlash(&quot;/MiniatureProductWorld&quot;)">/MiniatureProductWorld</button><button type="button" title="Tambah /AnimeProductAd" onclick="addSlash(&quot;/AnimeProductAd&quot;)">/AnimeProductAd</button><button type="button" title="Tambah /ComicBookAd" onclick="addSlash(&quot;/ComicBookAd&quot;)">/ComicBookAd</button><button type="button" title="Tambah /PopArtProduct" onclick="addSlash(&quot;/PopArtProduct&quot;)">/PopArtProduct</button><button type="button" title="Tambah /RetroCartoonAd" onclick="addSlash(&quot;/RetroCartoonAd&quot;)">/RetroCartoonAd</button><button type="button" title="Tambah /StopMotionProduct" onclick="addSlash(&quot;/StopMotionProduct&quot;)">/StopMotionProduct</button><button type="button" title="Tambah /PaperCutoutAd" onclick="addSlash(&quot;/PaperCutoutAd&quot;)">/PaperCutoutAd</button><button type="button" title="Tambah /OrigamiProductAd" onclick="addSlash(&quot;/OrigamiProductAd&quot;)">/OrigamiProductAd</button><button type="button" title="Tambah /SketchProductAd" onclick="addSlash(&quot;/SketchProductAd&quot;)">/SketchProductAd</button><button type="button" title="Tambah /InkProductAd" onclick="addSlash(&quot;/InkProductAd&quot;)">/InkProductAd</button><button type="button" title="Tambah /OilPaintingAd" onclick="addSlash(&quot;/OilPaintingAd&quot;)">/OilPaintingAd</button><button type="button" title="Tambah /PencilSketchAd" onclick="addSlash(&quot;/PencilSketchAd&quot;)">/PencilSketchAd</button><button type="button" title="Tambah /NeonAnimationAd" onclick="addSlash(&quot;/NeonAnimationAd&quot;)">/NeonAnimationAd</button><button type="button" title="Tambah /PixelArtProduct" onclick="addSlash(&quot;/PixelArtProduct&quot;)">/PixelArtProduct</button><button type="button" title="Tambah /RetroGameAd" onclick="addSlash(&quot;/RetroGameAd&quot;)">/RetroGameAd</button><button type="button" title="Tambah /ArcadeProductAd" onclick="addSlash(&quot;/ArcadeProductAd&quot;)">/ArcadeProductAd</button></div></div>
+  </div>
+  <textarea id="slashCommands" placeholder="/heroProduct
+/productReveal
+/cinematiclighting
+/premiumcommercial"></textarea>
+  <div class="small">Tip: kosongkan kotak ini untuk Auto Stack (AI pilih/cipta arahan "/" sendiri). Jangan risau tentang format — satu command satu baris.</div>
+</div>
+<div id="intelStatus" class="small" style="min-height:20px;margin:8px 0"></div><div class="small">Maklumat produk dan gambar dimasukkan sekali di sini. Pilih tab di sebelah kanan dan tekan Jana pada tab yang diperlukan sahaja.</div><div class="actions"><button class="primary" onclick="generateTab('story')">📝 Jana Tab 1 — Story Content</button></div><div class="actions"><button class="ghost" onclick="copyAllPrompts()">📋 Copy Prompt Video</button><button class="ghost" onclick="downloadKit()">⬇️ Simpan Kit</button></div>
+<div class="small">V10 menggunakan AI multimodal sebenar untuk memahami product reference images. Claim yang tidak dapat disahkan tidak akan dianggap sebagai fakta. API key tidak disimpan dalam browser.</div>
+</section>
+
+<section>
+<div class="result"><div class="rh">⚡ V11 — PENJANAAN BERASINGAN</div><div class="rb">Masukkan maklumat produk, gambar, nama panggilan dan penerangan sekali. Jana setiap tab secara berasingan. Tab 1: cerita ringkas; Tab 2: enam post strategik; Tab 3: enam idea video, setiap satu mempunyai Clip A dan Clip B selama 8 saat. Tab lain tidak dijana secara automatik.</div></div>
+
+<div id="results" class="results"></div>
+<div class="tipText" style="text-align:center;margin-top:14px">Kalau AffiliFlow AI membantu anda, tip adalah sukarela.</div>
+</section>
+</div>
+</div>
+
+<script src="content-validator.js"></script>
+<script src="app.js"></script>
+
+
+
+
+
+<style id="v10-light-input-fix">
+/* Final-priority override: form fields should stay light, not dark navy. */
+input:not([type="checkbox"]):not([type="radio"]), select, textarea {
+  color: #172033 !important; background: #fff !important; border: 1px solid #d0d5dd !important; color-scheme: light;
+}
+input::placeholder, textarea::placeholder { color: #98a2b3 !important; opacity: 1; }
+input[type="file"] { color: #344054 !important; background: #fff !important; }
+input[type="file"]::file-selector-button { color: #344054; background: #f8fafc; border: 1px solid #d0d5dd; border-radius: 7px; padding: 7px 10px; margin-right: 8px; cursor: pointer; }
+input:focus, select:focus, textarea:focus { border-color: #ff6b4a !important; box-shadow: 0 0 0 3px rgba(255,107,74,.12) !important; }
+</style>
+
+<div id="supportModal" class="modalOverlay" onclick="closeSupport(event)">
+  <div class="supportModal" onclick="event.stopPropagation()">
+    <button class="modalClose" onclick="closeSupport()">×</button>
+    <div class="supportIcon">🎁</div>
+    <h2>Sumbangan AffiliFlow AI</h2>
+    <p>Sumbangan anda serendah RM2 dapat membantu kami teruskan AffiliFlow AI.</p>
+    <div class="qrWrap">
+      <img class="supportQr" src="support-qr.png" alt="QR code untuk tip AffiliFlow AI">
+    </div>
+    <div class="qrHint">📱 Scan QR code untuk membuat sumbangan / tip</div>
+    <div class="small">Terima kasih kerana menyokong AffiliFlow AI. ❤️</div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div><strong>AffiliFlow AI</strong> — alat bantu penciptaan kandungan affiliate. Semak fakta, harga, promosi dan tuntutan produk sebelum diterbitkan.</div>
+  <div class="site-footer-links">
+    <a href="about.html">Tentang Kami</a>
+    <a href="panduan-affiliate.html">Panduan Affiliate</a>
+    <a href="privacy.html">Dasar Privasi</a>
+    <a href="terms.html">Terma Penggunaan</a>
+    <a href="contact.html">Hubungi</a>
+  </div>
+  <p>Sesetengah pautan atau kandungan promosi mungkin menghasilkan komisen kepada penerbit jika dinyatakan. Maklumat dan hasil AI perlu disemak oleh pengguna.</p>
+</footer>
+</body>
+</html>

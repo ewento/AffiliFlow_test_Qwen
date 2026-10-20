@@ -1,0 +1,8 @@
+AffiliFlow AI V11.1 — hotfix
+
+- Corrected Tab 3 label to VIDEO PROMPTS · 6 VIDEO.
+- Corrected frontend video normalizer so all six ideas are retained (12 clips total).
+- Improved non-JSON API response diagnostics so HTTP 200 HTML/fallback responses show a useful preview instead of a misleading timeout-only message.
+- Kept independent tab generation and existing Netlify function routing.
+
+Test before deployment: npm test; then npm start and verify GEMINI_API_KEY is configured in the environment.

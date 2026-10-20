@@ -1,0 +1,36 @@
+AffiliFlow AI V10 — AdSense Preparation Edition
+================================================
+
+This is a preparation build based on the supplied original ZIP.
+
+WHAT CHANGED
+- Added public navigation/footer to index.html.
+- Added public information pages:
+  - about.html
+  - panduan-affiliate.html
+  - privacy.html
+  - terms.html
+  - contact.html
+- Added basic SEO description metadata to index.html.
+- Kept the original AI app files, Netlify functions, configuration, and tests.
+- Did NOT add AdSense publisher code. Insert the exact code provided by your own AdSense account only after signing up.
+- Did NOT change or include your Netlify Gemini API key.
+
+IMPORTANT BEFORE DEPLOYING / APPLYING FOR ADSENSE
+1. Open contact.html and add a real support email or a contact method that you actually monitor.
+2. Review privacy.html against your actual data flow and current Google/AI provider terms. It is a draft, not legal advice.
+3. Confirm your public Netlify URL works and all public pages can be opened without signing in.
+4. Deploy this folder to the same Netlify site only after backing up the current deployment.
+5. Test the AI generator, image uploads, all three tabs, and Netlify function after deployment.
+6. Register the site in Google AdSense and follow the account-specific verification/review steps. Approval is not guaranteed.
+7. After approval, add the AdSense code generated in your own account and review ad placement on desktop/mobile.
+8. Never click your own ads or ask others to click ads.
+
+COST
+- The added pages and code are free.
+- No AdSense code or publisher ID is included.
+- Your existing Netlify plan and Gemini API usage remain subject to their current quotas/terms.
+- A custom domain is optional; do not purchase one solely for this preparation build before checking your needs.
+
+DEPLOYMENT
+The ZIP is packaged with the project files at the root. Extract it, then deploy the project folder using the same deployment method you currently use for AffiliFlow AI. Do not overwrite your live site until you have a backup.

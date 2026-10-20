@@ -1,0 +1,16 @@
+AffiliFlow AI V11.4 — Clip B Prompt Completeness + QA Fix
+
+Changes:
+- Strengthened video prompt instructions: every one of the 12 clips must include all nine required sections with concrete non-empty content.
+- Clarified Clip B must continue from Clip A's exact end frame and advance the action, not return an unfinished template.
+- Adjusted video generation token budget and temperature to favour complete, consistent structured output.
+- Video QA now checks all nine required section labels and flags empty/near-empty sections, not just missing labels.
+- If the repair attempt is worse than the first batch, the app preserves the batch with the better QA score instead of replacing it blindly.
+- Kept six video ideas × two 8-second clips, product identity lock, slash command selection, and existing Netlify configuration.
+
+Validation performed:
+- JavaScript syntax checks: app.js, netlify/functions/prompts.js, netlify/functions/ai.js.
+- Existing validator suite: PASS.
+- Live Gemini generation and browser visual test: not run in this environment; verify in StackBlitz before deployment.
+
+No production deployment performed.
